@@ -1,82 +1,102 @@
-#Project Title: Node_Backend
+# Node_Backend
+
+This npm package provides a comprehensive backend setup with multiple functionalities including server setup, models, middleware, validation, authentication, authorization, email services, and database management using MongoDB and Mongoose.
+
+## Installation
+
+```bash
+    1.  git clone <https://github.com/arjunsaxena122/Node_Backend.git>
+```
+```bash
+    2. cd Node_Backend
+```
+```bash
+    3. npm install 
+```
+```bash
+    4. PORT=3000
+       MONGODB_URI=<your_mongodb_uri>
+       JWT_SECRET=<your_jwt_secret>
+       EMAIL_USER=<your_email_user>
+       EMAIL_PASS=<your_email_password>
+```
 
 
-#Description :-
+## Features
 
-This project is a full-featured backend application developed using Node.js and Express. It incorporates a variety of technologies and libraries to provide robust authentication, data handling, and additional functionalities. The key components of this project are detailed below:
+- **Server Setup:** Configured with Express.js
+- **Models:** Structured using Mongoose
+- **Middleware:** Custom middleware for various purposes
+- **Validation:** Implemented using Zod
+- **Authentication & Authorization:** Using JWT and bcrypt
+- **Email Service:** Configured with Nodemailer
+- **Database:** MongoDB with Mongoose integration
 
-#Features:-
+## Prerequisites
 
-1. Node.js & Express: The core framework for building the backend server, handling HTTP requests, and routing.
+Before you begin, ensure you have met the following requirements:
 
-2. MongoDB & Mongoose: MongoDB is used as the database, and Mongoose provides a schema-based solution to model the application data.
+- Node.js installed on your machine
+- MongoDB installed and running on your machine or a cloud instance
 
-3. Authentication: Implemented user authentication using JWT (JSON Web Token) to ensure secure access to the application.
+## Folder Structure
 
-4. Data Validation: Used Zod for schema validation to ensure data integrity and validation.
+`src/config/db.js`
 
-5. Password Hashing: Utilized bcrypt for hashing user passwords to enhance security.
+This file contains the MongoDB connection setup using Mongoose.
 
-6. File Uploads: Integrated Cloudinary for storing and managing user-uploaded images.
+`src/controllers/authController.js`
 
-7. OTP Generation: Implemented OTP (One-Time Password) generation using otp-generator for features like two-factor authentication.
+This file contains the logic for handling authentication-related requests.
 
-8. Email Service: Used NodeMailer to send emails, such as account verification, password reset, and notifications.
+`src/controllers/userController.js`
 
-#Technologies Used :-
- 
-a) Node.js: JavaScript runtime built on Chrome's V8 engine.
+This file contains the logic for handling user-related requests.
 
-b) Express: Fast, unopinionated, minimalist web framework for Node.js.
+`src/middlewares/authMiddleware.js`
 
-c) MongoDB: NoSQL database for storing application data.
+This middleware handles authentication and authorization using JWT.
 
-d) Mongoose: Elegant MongoDB object modeling for Node.js.
+`src/middlewares/validationMiddleware.js`
 
-e) Zod: TypeScript-first schema declaration and validation library.
+This middleware handles request validation using Zod.
 
-f) bcrypt: Password hashing library to enhance security.
+`src/middlewares/errorHandler.js`
 
-g) JSON Web Token (JWT): Token-based authentication.
+This middleware handles errors and sends appropriate responses.
 
-h) Cloudinary: Cloud-based image and video management service.
+`src/models/userModel.js`
 
-i) otp-generator: Library for generating one-time passwords (OTPs).
+This file defines the User schema and model using Mongoose.
 
-j) NodeMailer: Module for sending emails from Node.js applications.
+`src/routes/authRoutes.js`
 
+This file defines the routes for authentication-related endpoints.
 
-#Setup and Installation:-
+`src/routes/userRoutes.js`
 
-#Clone the repository:
+This file defines the routes for user-related endpoints.
 
+`src/services/emailService.js`
 
-1. git clone:-  https://github.com/arjunsaxena122/Node_Backend.git
+This file contains functions for sending emails using Nodemailer.
 
-cd your-Node_Backend
+`src/services/authService.js`
 
-#Install dependencies:
+This file contains functions for handling authentication logic.
 
-npm install
+`src/utils/jwt.js`
 
-#Environment Variables:
+This file contains utility functions for generating and verifying JWT tokens.
 
-Create a .env file in the root directory and add the necessary environment variables as shown in .env.example.
+`src/utils/bcrypt.js`
 
-#Run the application:
+This file contains utility functions for hashing and comparing passwords using bcrypt.
 
-npm start
+`src/validations/userValidation.js`
 
-#Usage
+This file contains validation schemas using Zod for user-related requests.
 
-1. User Authentication: Securely register and login users with JWT-based authentication.
+`src/app.js`
 
-2. Data Validation: Ensure data integrity using Zod schemas.
-
-3. Password Management: Securely store passwords using bcrypt.
-
-4. Image Uploads: Upload and manage images using Cloudinary.
-
-5. OTP Services: Generate and validate OTPs for various user actions.
-
-6. Email Notifications: Send emails for account verification, password resets, etc., using NodeMailer.
+This is the main entry point of the application where the Express app is configured and started.
