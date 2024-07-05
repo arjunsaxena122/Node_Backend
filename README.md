@@ -107,14 +107,11 @@ This is the main entry point of the application where the Express app is configu
 ##Start the server:
 
 ```bash
-Copy code
 1. npm start
 ```
 ```bash
-Copy code
 2. The server will run on the port specified in the .env file (default is 3000).
 ```
 ```bash
-Copy code
 3. Use an API client like Postman to test the endpoints.
 ```
