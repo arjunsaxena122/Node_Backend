@@ -5,20 +5,20 @@ import jwt from "jsonwebtoken"
 const userSchema = new mongoose.Schema(
     {
         userName: {
-            type: "String",
+            type: String,
             unique: true,
         },
         email: {
-            type: "String",
+            type: String,
             unique: true,
 
         },
         password: {
-            type: "String",
+            type: String,
         },
-        // token:{
-        //     type: "String",
-        // }
+        refreshToken:{
+            type:String,
+        }
     },
     { timestamps: true }
 )
@@ -35,7 +35,7 @@ userSchema.methods.isPasswordCorrect = async function (password) {
     return await bcrypt.compare(password, this.password);
 }
 
-userSchema.methods.generateToken = async function () {
+userSchema.methods.generateToken = function () {
     return jwt.sign({
         _id: this._id,
         userName: this.userName,
@@ -45,6 +45,17 @@ userSchema.methods.generateToken = async function () {
         process.env.TOKEN_JWT_SECRET_KEY,
     {
             expiresIn: "1h",
+    },
+    )
+}
+
+userSchema.methods.generateRefreshToken = function () {
+    return jwt.sign({
+        _id: this._id,
+    },
+        process.env.REFRESH_TOKEN_JWT_SECRET_KEY,
+    {
+            expiresIn: "2h",
     },
     )
 }
