@@ -80,10 +80,9 @@ export const logout = async (req, res) => {
   }
 };
 
-export const isMatchRefreshToken = async (req, res) => {
+export const isMatchRefreshToken = asyncHandler( async (req, res) => {
   try {
-    const MatchRefreshToken = req.cookie.refreshToken || req.body.refreshToken; // This is for mobile user
-    console.log(MatchRefreshToken);
+    const MatchRefreshToken = req.cookies.refreshToken || req.body.refreshToken; // This is for mobile user
 
     if (!MatchRefreshToken) {
       throw new ApiError(404, "Unauthorized request");
@@ -91,9 +90,8 @@ export const isMatchRefreshToken = async (req, res) => {
 
     const decodeRefreshToken = jwt.verify(
       MatchRefreshToken,
-      REFRESH_TOKEN_JWT_SECRET_KEY
+      process.env.REFRESH_TOKEN_JWT_SECRET_KEY
     );
-    console.log(decodeRefreshToken);
 
     const user = await User.findById(decodeRefreshToken?._id);
     console.log(user);
@@ -126,7 +124,6 @@ export const isMatchRefreshToken = async (req, res) => {
 
   } 
   catch (error) {
-    console.log(error)
-    throw new ApiError(500, "Internal Server Error");
+    throw new ApiError(401, error?.message || "Invalid refresh token")
   }
-};
+});
