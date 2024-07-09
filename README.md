@@ -1,4 +1,4 @@
-# Node_Backend
+# Project: Node_Backend
 
 This npm package provides a comprehensive backend setup with multiple functionalities including server setup, models, middleware, validation, authentication, authorization, email services, and database management using MongoDB and Mongoose.
 
