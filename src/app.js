@@ -16,6 +16,10 @@ app.get("/",(req,res)=>{
     res.send("Home server running")
 })
 
+app.get("/",(req,res)=>{
+    res.json("This is Homer Interface")
+});
+
 app.use("/api/v1/users",userRouter)
 
 export {app}
